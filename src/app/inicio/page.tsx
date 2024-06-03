@@ -55,9 +55,9 @@ export default function HomePage() {
           <li
             className="
               dl-flex dl-items-center dl-border dl-justify-center
-              dl-border-solid dl-border-al-warning-light
+              dl-border-solid dl-border-warning-light
               dl-rounded-lg dl-gap-4 dl-px-4 dl-flex-1 dl-h-14
-              dl-bg-al-warning-lightest"
+              dl-bg-warning-lightest"
             key={index}
           >
             <DlIcon size="lg" name={card.icon as DlIconNamesProp} />
