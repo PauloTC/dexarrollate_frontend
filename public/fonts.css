@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'AlicorpSans';
+  src: url('/fonts/AlicorpSans-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlicorpSans';
+  src: url('/fonts/AlicorpSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlicorpSans';
+  src: url('/fonts/AlicorpSans-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'AlicorpSans';
+  src: url('/fonts/AlicorpSans-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
