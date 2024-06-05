@@ -13,9 +13,6 @@ const authCtrl = new Auth();
 
 const LoginComponent = () => {
   const router = useRouter();
-
-  const { login } = useAuth();
-
   const [documentType, setDocumentType] = useState("dni");
 
   // const handleSubmit = (event: any) => {
@@ -45,19 +42,39 @@ const LoginComponent = () => {
   });
 
   return (
-    <>
-      <div>
-        <div className="flex sm:dl-hidden">
+    <div className="dl-flex dl-flex-col lg:dl-grid lg:dl-grid-cols-6 dl-h-screen">
+      <div className="dl-relative lg:dl-col-span-4 dl-h-40 lg:dl-h-screen">
+        <div className="dl-flex lg:dl-hidden">
           <Image
-            priority
             alt="banner"
-            layout="responsive"
-            width={1200}
-            height={800}
-            src="/login/banner_mobile.png"
+            fill
+            objectFit="cover"
+            sizes="100vw"
+            src="/login/banner-mobile.png"
           />
         </div>
-        <div className="px-4 dl-py-8">
+        <div className="dl-hidden lg:dl-block">
+          <Image
+            alt="banner"
+            fill
+            sizes="100vw"
+            src="/login/banner-desktop.jpg"
+          />
+        </div>
+      </div>
+      <div
+        className="
+          dl-py-8
+          dl-px-4
+          lg:dl-col-span-2
+          lg:dl-px-20
+          lg:dl-flex
+          dl-flex-col
+          dl-items-center
+          dl-justify-around
+        "
+      >
+        <div className="dl-w-full dl-max-w-xl">
           <Image
             className="mb-6"
             alt="logo"
@@ -73,6 +90,7 @@ const LoginComponent = () => {
             <DlSelect
               onChange={handleSelectChange}
               value="dni"
+              size="lg"
               items={[
                 { value: "dni", label: "DNI" },
                 { value: "ce", label: "CE" },
@@ -114,6 +132,7 @@ const LoginComponent = () => {
               placeholder="Contraseña"
               value={formik.values.password}
               onChange={formik.handleChange}
+              size="lg"
             />
             <DlButton type="submit" className="dl-mb-6" block={true}>
               Ingresar
@@ -125,7 +144,7 @@ const LoginComponent = () => {
           </p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
