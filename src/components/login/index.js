@@ -1,33 +1,37 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DlButton, DlSelect, DlInput } from "@alicorpdigital/dali-react";
 import { useFormik } from "formik";
-import { initialValues, validationSchema } from "./loginform.form";
+import { initialValues } from "./loginform.form";
 
 import { useRouter } from "next/navigation";
 import { Auth } from "@/api";
-import { useAuth } from "@/hooks/useAuth";
+import * as Yup from "yup";
 
 const authCtrl = new Auth();
 
 const LoginComponent = () => {
   const router = useRouter();
-  const [documentType, setDocumentType] = useState("dni");
-
-  // const handleSubmit = (event: any) => {
-  //   event.preventDefault();
-  //   router.push("/inicio");
-  // };
-
-  const handleSelectChange = (event) => {
-    setDocumentType(event.target.value);
-  };
+  const [validationSchema, setValidationSchema] = useState(
+    Yup.object({
+      identifier: Yup.string()
+        .required("Este campo es requerido")
+        .length(8, `El identificador debe tener exactamente 8 dígitos`)
+        .matches(/^[0-9]+$/, "El identificador solo puede contener números"),
+      password: Yup.string().required("Este campo es requerido"),
+    })
+  );
 
   const formik = useFormik({
-    initialValues: initialValues(),
-    validationSchema: validationSchema(),
+    initialValues: initialValues({
+      identifier: "",
+      documentType: "dni",
+      password: "",
+    }),
+    validationSchema: validationSchema,
     validateOnChange: false,
+    validateOnMount: false,
     onSubmit: async (values) => {
       try {
         const response = await authCtrl.login(values);
@@ -40,6 +44,41 @@ const LoginComponent = () => {
       }
     },
   });
+
+  useEffect(() => {
+    const identifierLength = formik.values.documentType === "ce" ? 7 : 8;
+
+    console.log("identifierLength", identifierLength);
+
+    setValidationSchema(
+      Yup.object({
+        identifier: Yup.string()
+          .required("Este campo es requerido")
+          .length(
+            identifierLength,
+            `El identificador debe tener exactamente ${identifierLength} dígitos`
+          )
+          .matches(/^[0-9]+$/, "El identificador solo puede contener números"),
+        password: Yup.string().required("Este campo es requerido"),
+      })
+    );
+
+    if (formik.touched.identifier) {
+      formik.setFieldTouched("identifier", false);
+      formik.validateForm();
+    }
+  }, [formik.values.documentType, formik.touched.identifier]);
+
+  useEffect(() => {
+    // Reset del formulario
+    formik.resetForm({
+      values: {
+        ...formik.values,
+        identifier: "", // resetea el documento
+        password: "", // resetea el password
+      },
+    });
+  }, [formik.values.documentType]);
 
   return (
     <div className="dl-flex dl-flex-col lg:dl-grid lg:dl-grid-cols-6 dl-h-screen">
@@ -76,7 +115,7 @@ const LoginComponent = () => {
       >
         <div className="dl-w-full dl-max-w-xl">
           <Image
-            className="mb-6"
+            className="dl-mb-6"
             alt="logo"
             width={168}
             height={20}
@@ -88,43 +127,28 @@ const LoginComponent = () => {
             className="dl-flex dl-flex-col dl-gap-6"
           >
             <DlSelect
-              onChange={handleSelectChange}
-              value="dni"
+              name="documentType"
+              id="documentType"
+              value={formik.values.documentType}
+              onChange={formik.handleChange}
               size="lg"
               items={[
                 { value: "dni", label: "DNI" },
                 { value: "ce", label: "CE" },
               ]}
             ></DlSelect>
-            {/* <input
-              name="identifier"
-              id="identifier"
-              placeholder="name@company.com"
-              value={formik.values.identifier}
-              onChange={formik.handleChange}
-              error={formik.errors.identifier}
-            ></input> */}
-            {/* <input
-              type="password"
-              name="password"
-              id="password"
-              placeholder="*****"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-            ></input> */}
             <DlInput
               name="identifier"
               id="identifier"
-              maxLength={documentType === "dni" ? 8 : 7}
-              required
+              maxLength={formik.values.documentType === "dni" ? 8 : 7}
               value={formik.values.identifier}
               onChange={formik.handleChange}
               status={formik.errors.identifier ? "error" : "default"}
-              placeholder={`Número de ${documentType.toUpperCase()}`}
+              placeholder={`Número de ${formik.values.documentType.toUpperCase()}`}
               helperText={formik.errors.identifier}
+              size="lg"
             />
             <DlInput
-              required
               type="password"
               name="password"
               id="password"
@@ -132,6 +156,8 @@ const LoginComponent = () => {
               placeholder="Contraseña"
               value={formik.values.password}
               onChange={formik.handleChange}
+              status={formik.errors.password ? "error" : "default"}
+              helperText={formik.errors.password}
               size="lg"
             />
             <DlButton type="submit" className="dl-mb-6" block={true}>
