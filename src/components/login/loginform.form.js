@@ -4,12 +4,6 @@ export function initialValues() {
   return {
     identifier: "",
     password: "",
+    documentType: "dni",
   };
-}
-
-export function validationSchema() {
-  return Yup.object({
-    identifier: Yup.string().required(true),
-    password: Yup.string().required(true),
-  });
 }
