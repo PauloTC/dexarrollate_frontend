@@ -2,22 +2,47 @@
 import Image from "next/image";
 import { useState } from "react";
 import { DlButton, DlSelect, DlInput } from "@alicorpdigital/dali-react";
+import { useFormik } from "formik";
+import { initialValues, validationSchema } from "./loginform.form";
 
 import { useRouter } from "next/navigation";
+import { Auth } from "@/api";
+import { useAuth } from "@/hooks/useAuth";
+
+const authCtrl = new Auth();
 
 const LoginComponent = () => {
   const router = useRouter();
 
+  const { login } = useAuth();
+
   const [documentType, setDocumentType] = useState("dni");
 
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    router.push("/inicio");
-  };
+  // const handleSubmit = (event: any) => {
+  //   event.preventDefault();
+  //   router.push("/inicio");
+  // };
 
-  const handleSelectChange = (event: any) => {
+  const handleSelectChange = (event) => {
     setDocumentType(event.target.value);
   };
+
+  const formik = useFormik({
+    initialValues: initialValues(),
+    validationSchema: validationSchema(),
+    validateOnChange: false,
+    onSubmit: async (values) => {
+      try {
+        const response = await authCtrl.login(values);
+
+        login(response.jwt);
+
+        router.push("/inicio");
+      } catch (error) {
+        console.error(error);
+      }
+    },
+  });
 
   return (
     <>
@@ -42,23 +67,39 @@ const LoginComponent = () => {
           />
           <h3 className="dl-text-2xl dl-font-semibold dl-mb-6">Bienvenido</h3>
           <form
-            onSubmit={handleSubmit}
+            onSubmit={formik.handleSubmit}
             className="dl-flex dl-flex-col dl-gap-6"
           >
-            <DlSelect
+            {/* <DlSelect
               onChange={handleSelectChange}
               value="dni"
               items={[
                 { value: "dni", label: "DNI" },
                 { value: "ce", label: "CE" },
               ]}
-            ></DlSelect>
-            <DlInput
+            ></DlSelect> */}
+            <input
+              name="identifier"
+              id="identifier"
+              placeholder="name@company.com"
+              value={formik.values.identifier}
+              onChange={formik.handleChange}
+              error={formik.errors.identifier}
+            ></input>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="*****"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            ></input>
+            {/* <DlInput
               maxLength={documentType === "dni" ? 8 : 7}
               required
               placeholder={`Número de ${documentType.toUpperCase()}`}
             />
-            <DlInput required type="password" placeholder="Contraseña" />
+            <DlInput required type="password" placeholder="Contraseña" /> */}
             <DlButton type="submit" className="dl-mb-6" block={true}>
               Ingresar
             </DlButton>
