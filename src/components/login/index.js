@@ -70,36 +70,51 @@ const LoginComponent = () => {
             onSubmit={formik.handleSubmit}
             className="dl-flex dl-flex-col dl-gap-6"
           >
-            {/* <DlSelect
+            <DlSelect
               onChange={handleSelectChange}
               value="dni"
               items={[
                 { value: "dni", label: "DNI" },
                 { value: "ce", label: "CE" },
               ]}
-            ></DlSelect> */}
-            <input
+            ></DlSelect>
+            {/* <input
               name="identifier"
               id="identifier"
               placeholder="name@company.com"
               value={formik.values.identifier}
               onChange={formik.handleChange}
               error={formik.errors.identifier}
-            ></input>
-            <input
+            ></input> */}
+            {/* <input
               type="password"
               name="password"
               id="password"
               placeholder="*****"
               value={formik.values.password}
               onChange={formik.handleChange}
-            ></input>
-            {/* <DlInput
+            ></input> */}
+            <DlInput
+              name="identifier"
+              id="identifier"
               maxLength={documentType === "dni" ? 8 : 7}
               required
+              value={formik.values.identifier}
+              onChange={formik.handleChange}
+              status={formik.errors.identifier ? "error" : "default"}
               placeholder={`Número de ${documentType.toUpperCase()}`}
+              helperText={formik.errors.identifier}
             />
-            <DlInput required type="password" placeholder="Contraseña" /> */}
+            <DlInput
+              required
+              type="password"
+              name="password"
+              id="password"
+              maxLength={10}
+              placeholder="Contraseña"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+            />
             <DlButton type="submit" className="dl-mb-6" block={true}>
               Ingresar
             </DlButton>
