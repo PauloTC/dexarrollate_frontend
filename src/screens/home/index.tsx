@@ -1,5 +1,5 @@
 import Banner from '@/components/banner';
-import { DlButton, DlIcon } from '@alicorpdigital/dali-react';
+import { DlButton, DlIcon, DlTabs } from '@alicorpdigital/dali-react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -14,7 +14,7 @@ const HomePage = () => {
         </p>
 
         <div className='dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-6'>
-          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-[#DEDEDE] dl-bg-neutral-lightest'>
+          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest'>
             <div className='dl-min-w-24 dl-flex dl-items-center dl-relative'>
               <Image
                 alt='file'
@@ -24,7 +24,7 @@ const HomePage = () => {
               />
             </div>
             <div className='dl-flex dl-flex-col dl-w-full'>
-              <p className='dl-body-nano dl-text-[#757575]'>Documento PDF</p>
+              <p className='dl-body-nano dl-text-gray-500'>Documento PDF</p>
               <h4 className='dl-body-nano-bold dl-mb-2'>Manual de inicio</h4>
 
               <DlButton className='dl-ml-auto' variant='highlight' size='sm' icon={<DlIcon name='download' />}>
@@ -32,7 +32,7 @@ const HomePage = () => {
               </DlButton>
             </div>
           </div>
-          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-[#DEDEDE] dl-bg-neutral-lightest'>
+          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest'>
             <div className='dl-min-w-24 dl-flex dl-items-center dl-relative'>
               <Image
                 alt='file'
@@ -42,7 +42,7 @@ const HomePage = () => {
               />
             </div>
             <div className='dl-flex dl-flex-col dl-w-full'>
-              <p className='dl-body-nano dl-text-[#757575]'>Documento PDF</p>
+              <p className='dl-body-nano dl-text-gray-500'>Documento PDF</p>
               <h4 className='dl-body-nano-bold dl-mb-2'>Manual de inicio</h4>
 
               <DlButton className='dl-ml-auto' variant='highlight' size='sm' icon={<DlIcon name='download' />}>
@@ -50,7 +50,7 @@ const HomePage = () => {
               </DlButton>
             </div>
           </div>
-          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-[#DEDEDE] dl-bg-neutral-lightest'>
+          <div className='dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest'>
             <div className='dl-min-w-24 dl-flex dl-items-center dl-relative'>
               <Image
                 alt='file'
@@ -60,7 +60,7 @@ const HomePage = () => {
               />
             </div>
             <div className='dl-flex dl-flex-col dl-w-full'>
-              <p className='dl-body-nano dl-text-[#757575]'>Documento PDF</p>
+              <p className='dl-body-nano dl-text-gray-500'>Documento PDF</p>
               <h4 className='dl-body-nano-bold dl-mb-2'>Manual de inicio</h4>
 
               <DlButton className='dl-ml-auto' variant='highlight' size='sm' icon={<DlIcon name='download' />}>
@@ -69,6 +69,27 @@ const HomePage = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className='dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8'>
+        <DlTabs
+          items={[
+            {
+              children: 'Tab 1 content',
+              key: 'calendario-semanal',
+              title: 'Calendario semanal'
+            },
+            {
+              children: 'Tab 2 content',
+              key: 'rutina-comercial',
+              title: 'Rutina comercial '
+            },
+            {
+              children: 'Tab 3 content',
+              key: 'playbook',
+              title: 'Playbook'
+            }
+          ]}
+        />
       </div>
     </>
   )
