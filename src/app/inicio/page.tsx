@@ -6,6 +6,7 @@ import {
   DlIconNamesProp,
 } from "@alicorpdigital/dali-react";
 import Image from "next/image";
+import { useAuth } from "@/hooks/useAuth";
 
 const cards = [
   {
@@ -47,8 +48,13 @@ const badges = [
 ];
 
 export default function HomePage() {
+  const { user } = useAuth();
+
   return (
     <div className="dl-px-4 dl-mt-4">
+      <h4 className="dl-text-base dl-font-semibold dl-mb-4">
+        Bienvenido {user?.position}
+      </h4>
       <h4 className="dl-text-base dl-font-semibold dl-mb-4">Resumen</h4>
       <ul className="dl-flex dl-flex-wrap dl-gap-2 dl-mb-4">
         {cards.map((card, index) => (
