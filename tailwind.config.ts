@@ -11,9 +11,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        "primary-dark": "#A30000",
         "warning-light": "#F7B687",
         "warning-lightest": "#FAF4EF",
         "neutral-dark": "#6C6C6C",
+        "neutral-light": "#F7F7F7",
         "neutral-medium": "#DEDEDE",
         "neutral-lightest": "#FCFCFC",
         "highlight-medium": "#3B8700",

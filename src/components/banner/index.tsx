@@ -14,7 +14,7 @@ const Banner = () => {
         dl-items-center
         dl-justify-center
         dl-min-h-64
-        dl-text-[#A30000]
+        dl-text-primary-dark
       '
     >
       <h2 className='dl-text-3xl dl-font-bold'>¡Hola!</h2>
