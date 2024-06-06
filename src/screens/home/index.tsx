@@ -2,9 +2,34 @@ import Banner from "@/components/banner";
 import Soon from "@/components/soon";
 import { DlButton, DlIcon, DlTabs } from "@alicorpdigital/dali-react";
 import Image from "next/image";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Home } from "@/api";
+
+const homeCtrl = new Home();
+
+interface Video {
+  data: {
+    attributes: {
+      url: string;
+      name: string;
+    };
+    id: string;
+  }[];
+}
 
 const HomePage = () => {
+  const [videos, setVideos] = useState<Video[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const { data } = await homeCtrl.getHomeData();
+
+      setVideos(data?.attributes?.video);
+
+      console.log("data", data.attributes.video);
+    })();
+  }, []);
+
   return (
     <>
       <Banner />
@@ -77,12 +102,12 @@ const HomePage = () => {
             {
               children: (
                 <div className="dl-flex dl-justify-center">
-                  <video width="790" height="440" controls>
+                  {/* <video width="790" height="440" controls>
                     <source
                       src="http://localhost:1337/uploads/calendario_semanal_e633475c67.mp4"
                       type="video/mp4"
                     />
-                  </video>
+                  </video> */}
                 </div>
               ),
               key: "calendario-semanal",
@@ -91,12 +116,12 @@ const HomePage = () => {
             {
               children: (
                 <div className="dl-flex dl-justify-center">
-                  <video width="790" height="440" controls>
+                  {/* <video width="790" height="440" controls>
                     <source
                       src="http://localhost:1337/uploads/calendario_semanal_e633475c67.mp4"
                       type="video/mp4"
                     />
-                  </video>
+                  </video> */}
                 </div>
               ),
               key: "rutina-comercial",
@@ -110,6 +135,10 @@ const HomePage = () => {
           ]}
         />
       </div>
+      {videos?.data?.map((video, index) => (
+        <p key={index}>{video.attributes.name}</p>
+      ))}
+
       <Soon />
     </>
   );
