@@ -77,7 +77,7 @@ const HomePage = () => {
             {
               children: (
                 <div className="dl-flex dl-justify-center">
-                  <video width="440" height="790" controls>
+                  <video width="790" height="440" controls>
                     <source
                       src="http://localhost:1337/uploads/calendario_semanal_e633475c67.mp4"
                       type="video/mp4"
@@ -91,7 +91,7 @@ const HomePage = () => {
             {
               children: (
                 <div className="dl-flex dl-justify-center">
-                  <video width="440" height="790" controls>
+                  <video width="790" height="440" controls>
                     <source
                       src="http://localhost:1337/uploads/calendario_semanal_e633475c67.mp4"
                       type="video/mp4"
