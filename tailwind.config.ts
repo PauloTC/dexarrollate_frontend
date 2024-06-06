@@ -6,6 +6,7 @@ const config: Config = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/screens/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -13,6 +14,7 @@ const config: Config = {
         "warning-light": "#F7B687",
         "warning-lightest": "#FAF4EF",
         "neutral-dark": "#6C6C6C",
+        "neutral-medium": "#DEDEDE",
         "neutral-lightest": "#FCFCFC",
         "highlight-medium": "#3B8700",
       },
