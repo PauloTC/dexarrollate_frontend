@@ -1,4 +1,5 @@
 import Banner from '@/components/banner';
+import Soon from '@/components/soon';
 import { DlButton, DlIcon, DlTabs } from '@alicorpdigital/dali-react';
 import Image from 'next/image';
 import React from 'react';
@@ -91,6 +92,7 @@ const HomePage = () => {
           ]}
         />
       </div>
+      <Soon />
     </>
   )
 };
