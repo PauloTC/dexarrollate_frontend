@@ -56,7 +56,7 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-      <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
+      <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
         <h4 className="dl-subtitle-xxs mb-1">Manual de aprendizaje</h4>
         <p className="dl-comp-text-nano lg:dl-text-base">
           Texto breve descriptivo para dar contexto de esta sección
@@ -120,7 +120,7 @@ const HomePage = () => {
         </div>
       </div>
       {!loading &&
-        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
+        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
           <DlTabs
             items={formattedVideos().map(video => {
               return {
@@ -141,7 +141,6 @@ const HomePage = () => {
           />
         </div>
       }
-      <Soon />
     </>
   );
 };

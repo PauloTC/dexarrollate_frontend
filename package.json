@@ -9,8 +9,10 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@alicorpdigital/dali-css-library": "^1.32.2",
-    "@alicorpdigital/dali-react": "^0.0.4",
+    "@alicorpdigital/dali-css-library": "^1.32.2-canary.1",
+    "@alicorpdigital/dali-react": "^0.0.4-canary.2",
+    "@uidotdev/usehooks": "^2.4.1",
+    "jwt-decode": "^4.0.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",

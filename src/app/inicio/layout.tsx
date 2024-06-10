@@ -1,23 +1,51 @@
-"use client";
-
+'use client';
 import HeaderComponent from "@/components/header";
-import { DlSidebar } from "@alicorpdigital/dali-react";
-import { useEffect } from "react";
+import FooterComponent from '@/components/footer';
+import { DlIcon, DlSidebar } from "@alicorpdigital/dali-react";
+import { useMediaQuery } from "@uidotdev/usehooks";
 import { useAuth } from "@/hooks/useAuth";
+import { useState } from 'react';
+import Image from 'next/image';
 
 const Layout = ({ children }: any) => {
+  const [open, setOpen] = useState<boolean>(false);
+  const isLargeDevice = useMediaQuery('only screen and (min-width: 1024px)');
   const { isSeller } = useAuth();
 
   return (
     <>
-      <HeaderComponent />
-      <div
-        className={!isSeller ? "dl-grid lg:dl-grid-cols-12 xl:dl-gap-12" : ""}
-      >
-        {!isSeller && (
-          <div className="dl-hidden lg:dl-grid lg:dl-col-span-3">
+      <HeaderComponent onHamburger={() => setOpen(true)} />
+      <div className='dl-flex lg:dl-gap-12'>
+        {isSeller && (
+          <div
+            style={{
+              height: 'calc(100vh - 72px)',
+              boxShadow: '0px 0px 4px 0px rgba(108, 108, 108, 0.08), 0px 8px 16px -4px rgba(108, 108, 108, 0.16)'
+            }}
+            className="
+              lg:dl-flex
+              lg:dl-w-full
+              lg:dl-max-w-72
+              lg:dl-h-screen
+              lg:dl-sticky
+              lg:dl-top-[72px]
+            "
+          >
             <DlSidebar
-              open
+              open={open}
+              backdrop={open}
+              className='dl-max-w-72 lg:dl-flex lg:dl-static'
+              fixed
+              onClose={() => setOpen(false)}
+              closeable={!isLargeDevice}
+              title={!isLargeDevice &&
+                <Image
+                  alt='dexarrollate'
+                  src='/dexarrollate.svg'
+                  width={128}
+                  height={16}
+                />
+              }
               label="Supervisor"
               titleLabel="Paulo Tejada"
               items={[
@@ -26,14 +54,22 @@ const Layout = ({ children }: any) => {
                   label: "Recursos",
                 },
               ]}
+              itemsFooter={[
+                {
+                  icon: <DlIcon name='sign-out' />,
+                  key: "cerrar-sesion",
+                  label: "Cerrar sesión",
+                },
+              ]}
             />
           </div>
         )}
 
-        <div className={!isSeller ? "dl-col-span-10 lg:dl-col-span-9" : ""}>
+        <div className='dl-w-full'>
           {children}
         </div>
       </div>
+      <FooterComponent />
     </>
   );
 };
