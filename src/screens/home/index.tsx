@@ -3,6 +3,9 @@ import Soon from "@/components/soon";
 import Resources from "@/components/resources";
 import { DlTabs } from "@alicorpdigital/dali-react";
 
+import { DlButton, DlIcon } from "@alicorpdigital/dali-react";
+import Image from "next/image";
+
 import React, { useEffect, useState } from "react";
 import { Home, Resource } from "@/api";
 
@@ -58,10 +61,11 @@ const HomePage = () => {
   return (
     <>
       <Banner />
+
       <Resources />
 
       {!loading && (
-        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
+        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
           <DlTabs
             items={formattedVideos().map((video) => {
               return {
@@ -79,7 +83,6 @@ const HomePage = () => {
           />
         </div>
       )}
-      <Soon />
     </>
   );
 };
