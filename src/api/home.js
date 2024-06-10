@@ -1,4 +1,4 @@
-import { ENV, authFetch } from "@/utils";
+import { ENV } from "@/utils";
 
 export class Home {
   async getHomeData() {

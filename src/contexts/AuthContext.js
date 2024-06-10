@@ -59,6 +59,7 @@ export function AuthProvider(props) {
     login,
     isSeller,
     logout,
+    position,
   };
 
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;

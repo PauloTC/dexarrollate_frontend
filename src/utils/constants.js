@@ -1,12 +1,13 @@
 export const ENV = {
-  SERVER_HOST: "https://dexarrollate-qa.up.railway.app/",
-  API_URL: "https://dexarrollate-qa.up.railway.app/api",
+  SERVER_HOST: "http://localhost:1337/",
+  API_URL: "http://localhost:1337/api",
   ENDPOINTS: {
     AUTH: {
       LOGIN: "/auth/local",
     },
     USERS_ME: "/users/me",
     INICIO: "/inicio",
+    RESOURCES: "/resources",
   },
   TOKEN: "token",
 };
