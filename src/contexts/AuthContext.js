@@ -12,6 +12,9 @@ export function AuthProvider(props) {
 
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
+  const [position, setPosition] = useState("vendedor");
+
+  const isSeller = position === "vendedor";
 
   useEffect(() => {
     (async () => {
@@ -20,13 +23,14 @@ export function AuthProvider(props) {
       if (!token) {
         logout();
         return;
+        a;
       }
 
-      //   if (tokenCtrl.hasExpired(token)) {
-      //     logout();
-      //   } else {
-      //     await login(token);
-      //   }
+      if (tokenCtrl.hasExpired(token)) {
+        logout();
+      } else {
+        await login(token);
+      }
     })();
   }, []);
 
@@ -36,6 +40,7 @@ export function AuthProvider(props) {
       const response = await userCtrl.getMe();
       setUser(response);
       setToken(token);
+      setPosition(response.position);
     } catch (error) {
       console.log("error", error);
     }
@@ -52,6 +57,7 @@ export function AuthProvider(props) {
     accessToken: token,
     user,
     login,
+    isSeller,
     logout,
   };
 
