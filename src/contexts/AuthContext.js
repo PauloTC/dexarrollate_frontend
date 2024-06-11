@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useState, useEffect } from "react";
 import { Token, User } from "@/api";
+import { useRouter } from "next/navigation";
 
 const tokenCtrl = new Token();
 const userCtrl = new User();
@@ -10,11 +11,13 @@ export const AuthContext = createContext();
 export function AuthProvider(props) {
   const { children } = props;
 
+  const router = useRouter();
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(null);
-  const [position, setPosition] = useState("vendedor");
+  const [position, setPosition] = useState("");
 
   const isSeller = position === "vendedor";
+  const isLoading = position === "";
 
   useEffect(() => {
     (async () => {
@@ -50,7 +53,7 @@ export function AuthProvider(props) {
     tokenCtrl.removeToken();
     setToken(null);
     setUser(null);
-    // router.push("/", { scroll: false });
+    router.push("/", { scroll: false });
   };
 
   const data = {
@@ -58,6 +61,7 @@ export function AuthProvider(props) {
     user,
     login,
     isSeller,
+    isLoading,
     logout,
     position,
   };
