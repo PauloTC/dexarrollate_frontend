@@ -6,6 +6,21 @@ import { DlIcon } from "@alicorpdigital/dali-react";
 
 const resourceCtrl = new Resource();
 
+interface Document {
+  attributes: {
+    type: string;
+    title: string;
+    file: {
+      data: {
+        attributes: {
+          ext: string;
+          url: string;
+        };
+      };
+    };
+  };
+}
+
 const Resources = () => {
   const [resources, setResources] = useState<any[]>([]);
 
@@ -57,7 +72,9 @@ const Resources = () => {
     <>
       <div
         className={`dl-transition-opacity dl-duration-500 ${
-          isLoading ? "dl-visible dl-opacity-100" : "dl-invisible dl-opacity-0 dl-hidden"
+          isLoading
+            ? "dl-visible dl-opacity-100"
+            : "dl-invisible dl-opacity-0 dl-hidden"
         }`}
       >
         <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
@@ -102,7 +119,7 @@ const Resources = () => {
                 className="dl-mt-6 dl-grid dl-grid-cols-resources-3 dl-gap-2"
                 // style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
               >
-                {documents.data.map((document, index) => {
+                {documents.data.map((document: Document, index: number) => {
                   const { type, title } = document.attributes;
                   const file = document.attributes.file.data.attributes;
                   const isPdf = file.ext === ".pdf";
