@@ -57,7 +57,9 @@ const Resources = () => {
     <>
       <div
         className={`dl-transition-opacity dl-duration-500 ${
-          isLoading ? "dl-visible dl-opacity-100" : "dl-invisible dl-opacity-0"
+          isLoading
+            ? "dl-visible dl-opacity-100 dl-block"
+            : "dl-invisible dl-hidden dl-opacity-0"
         }`}
       >
         <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
@@ -82,7 +84,9 @@ const Resources = () => {
       </div>
       <div
         className={`dl-transition-opacity dl-duration-500 ${
-          isLoading ? "dl-invisible dl-opacity-0" : "dl-visible dl-opacity-100"
+          isLoading
+            ? "dl-invisible dl-opacity-0 dl-hidden"
+            : "dl-visible dl-opacity-100 dl-block"
         }`}
       >
         {resources.map((resource, index) => {
