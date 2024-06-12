@@ -10,6 +10,16 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        skeleton: {
+          "0%": { backgroundColor: "#f3f3f3" },
+          "50%": { backgroundColor: "#e0e0e0" },
+          "100%": { backgroundColor: "#f3f3f3" },
+        },
+      },
+      animation: {
+        skeleton: "skeleton 1.5s ease-in-out infinite",
+      },
       colors: {
         "primary-dark": "#A30000",
         "warning-light": "#F7B687",

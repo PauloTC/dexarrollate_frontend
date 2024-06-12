@@ -1,26 +1,28 @@
-'use client';
+"use client";
 import HeaderComponent from "@/components/header";
-import FooterComponent from '@/components/footer';
+import FooterComponent from "@/components/footer";
 import { DlIcon, DlSidebar } from "@alicorpdigital/dali-react";
 import { useMediaQuery } from "@uidotdev/usehooks";
 import { useAuth } from "@/hooks/useAuth";
-import { useState } from 'react';
-import Image from 'next/image';
+import { useState } from "react";
+import Image from "next/image";
+import { log } from "console";
 
 const Layout = ({ children }: any) => {
   const [open, setOpen] = useState<boolean>(false);
-  const isLargeDevice = useMediaQuery('only screen and (min-width: 1024px)');
-  const { isSeller } = useAuth();
+  const isLargeDevice = useMediaQuery("only screen and (min-width: 1024px)");
+  const { isSeller, logout } = useAuth();
 
   return (
     <>
       <HeaderComponent onHamburger={() => setOpen(true)} />
-      <div className='dl-flex lg:dl-gap-12'>
-        {isSeller && (
+      <div className="dl-flex lg:dl-gap-12">
+        {true && (
           <div
             style={{
-              height: 'calc(100vh - 72px)',
-              boxShadow: '0px 0px 4px 0px rgba(108, 108, 108, 0.08), 0px 8px 16px -4px rgba(108, 108, 108, 0.16)'
+              height: "calc(100vh - 72px)",
+              boxShadow:
+                "0px 0px 4px 0px rgba(108, 108, 108, 0.08), 0px 8px 16px -4px rgba(108, 108, 108, 0.16)",
             }}
             className="
               lg:dl-flex
@@ -34,17 +36,19 @@ const Layout = ({ children }: any) => {
             <DlSidebar
               open={open}
               backdrop={open}
-              className='dl-max-w-72 lg:dl-flex lg:dl-static'
+              className="dl-max-w-72 lg:dl-flex lg:dl-static"
               fixed
               onClose={() => setOpen(false)}
               closeable={!isLargeDevice}
-              title={!isLargeDevice &&
-                <Image
-                  alt='dexarrollate'
-                  src='/dexarrollate.svg'
-                  width={128}
-                  height={16}
-                />
+              title={
+                !isLargeDevice && (
+                  <Image
+                    alt="dexarrollate"
+                    src="/dexarrollate.svg"
+                    width={128}
+                    height={16}
+                  />
+                )
               }
               label="Supervisor"
               titleLabel="Paulo Tejada"
@@ -56,18 +60,19 @@ const Layout = ({ children }: any) => {
               ]}
               itemsFooter={[
                 {
-                  icon: <DlIcon name='sign-out' />,
+                  icon: <DlIcon name="sign-out" />,
                   key: "cerrar-sesion",
                   label: "Cerrar sesión",
+                  onClick: () => {
+                    logout();
+                  },
                 },
               ]}
             />
           </div>
         )}
 
-        <div className='dl-w-full'>
-          {children}
-        </div>
+        <div className="dl-w-full">{children}</div>
       </div>
       <FooterComponent />
     </>

@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { Resource } from "@/api";
 import { useAuth } from "@/hooks/useAuth";
-import { DlButton, DlIcon } from "@alicorpdigital/dali-react";
+import { DlIcon } from "@alicorpdigital/dali-react";
 
 const resourceCtrl = new Resource();
 
 const Resources = () => {
   const [resources, setResources] = useState<any[]>([]);
 
-  const { position } = useAuth();
+  const { position, isLoading } = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -17,7 +17,7 @@ const Resources = () => {
 
       setResources(resources.data);
     })();
-  }, []);
+  }, [position]);
 
   function getFileType(ext: string) {
     let fileType = "";
@@ -55,64 +55,95 @@ const Resources = () => {
 
   return (
     <>
-      {resources.map((resource, index) => {
-        const { title, subtitle, documents } = resource.attributes;
-
-        return (
-          <div
-            key={index}
-            className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8"
-          >
-            <h4 className="dl-subtitle-xxs mb-1">{title}</h4>
-            <p className="dl-comp-text-nano lg:dl-text-base">{subtitle}</p>
-
-            <div className="dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-6">
-              {documents.data.map((document, index) => {
-                const { type, title } = document.attributes;
-
-                const file = document.attributes.file.data.attributes;
-
-                const isPdf = file.ext === ".pdf";
-
-                let fileType = getFileType(file.ext);
-
-                let illustration = getIllustration(type);
-
-                return (
+      <div
+        className={`dl-transition-opacity dl-duration-500 ${
+          isLoading ? "dl-visible dl-opacity-100" : "dl-invisible dl-opacity-0"
+        }`}
+      >
+        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
+          <div className="dl-w-48 dl-bg-gray-200 dl-h-4 dl-animate-skeleton dl-mb-3 dl-rounded-lg"></div>
+          <div className="dl-w-72 dl-bg-gray-200 dl-h-4 dl-animate-skeleton dl-rounded-lg"></div>
+          <ul className="dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-6">
+            {Array.from({ length: 3 }).map((_, index) => (
+              <li
+                key={index}
+                className="dl-flex-col dl-flex dl-justify-around dl-p-4 dl-h-40 rounded-lg dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest"
+              >
+                {Array.from({ length: 3 }).map((_, index) => (
                   <div
                     key={index}
-                    className="dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest"
-                  >
-                    <div className="dl-min-w-24 dl-flex dl-items-center dl-relative">
-                      <Image
-                        alt="file"
-                        height={88}
-                        width={88}
-                        src={illustration}
-                      />
-                    </div>
-                    <div className="dl-flex dl-flex-col dl-w-full">
-                      <p className="dl-body-nano dl-text-gray-500 dl-capitalize">
-                        Documento {fileType}
-                      </p>
-                      <h4 className="dl-body-nano-bold dl-mb-2">{title}</h4>
+                    className="dl-w-72 dl-bg-gray-200 dl-h-4 dl-animate-skeleton dl-rounded-lg"
+                  ></div>
+                ))}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <div
+        className={`dl-transition-opacity dl-duration-500 ${
+          isLoading ? "dl-invisible dl-opacity-0" : "dl-visible dl-opacity-100"
+        }`}
+      >
+        {resources.map((resource, index) => {
+          const { title, subtitle, documents } = resource.attributes;
 
-                      <a
-                        className="dl-ml-auto dl-btn dl-btn-highlight dl-btn-sm"
-                        href={file.url}
-                        target={isPdf ? "_blank" : "_self"}
-                      >
-                        <DlIcon name="download" />
-                        Descargar
-                      </a>
+          return (
+            <div
+              key={index}
+              className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8"
+            >
+              <h4 className="dl-subtitle-xxs mb-1">{title}</h4>
+              <p className="dl-comp-text-nano lg:dl-text-base">{subtitle}</p>
+
+              <div className="dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-6">
+                {documents.data.map((document, index) => {
+                  const { type, title } = document.attributes;
+
+                  const file = document.attributes.file.data.attributes;
+
+                  const isPdf = file.ext === ".pdf";
+
+                  let fileType = getFileType(file.ext);
+
+                  let illustration = getIllustration(type);
+
+                  return (
+                    <div
+                      key={index}
+                      className="dl-p-4 rounded-lg dl-flex dl-gap-6 dl-border dl-border-neutral-medium dl-bg-neutral-lightest"
+                    >
+                      <div className="dl-min-w-24 dl-flex dl-items-center dl-relative">
+                        <Image
+                          alt="file"
+                          height={88}
+                          width={88}
+                          src={illustration}
+                        />
+                      </div>
+                      <div className="dl-flex dl-flex-col dl-w-full">
+                        <p className="dl-body-nano dl-text-gray-500 dl-capitalize">
+                          Documento {fileType}
+                        </p>
+                        <h4 className="dl-body-nano-bold dl-mb-2">{title}</h4>
+
+                        <a
+                          className="dl-ml-auto dl-btn dl-btn-highlight dl-btn-sm"
+                          href={file.url}
+                          target={isPdf ? "_blank" : "_self"}
+                        >
+                          <DlIcon name="download" />
+                          Descargar
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </>
   );
 };
