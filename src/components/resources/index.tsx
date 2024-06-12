@@ -77,7 +77,7 @@ const Resources = () => {
             : "dl-invisible dl-opacity-0 dl-hidden"
         }`}
       >
-        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8">
+        <div className="dl-py-4 dl-container dl-mx-auto lg:dl-py-8">
           <div className="dl-w-48 dl-bg-gray-200 dl-h-4 dl-animate-skeleton dl-mb-3 dl-rounded-lg"></div>
           <div className="dl-w-72 dl-bg-gray-200 dl-h-4 dl-animate-skeleton dl-rounded-lg"></div>
           <ul className="dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-6">
@@ -108,7 +108,7 @@ const Resources = () => {
           return (
             <div
               key={index}
-              className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-8"
+              className="dl-py-4 dl-container dl-mx-auto lg:dl-py-8"
             >
               <h4 className="dl-subtitle-xxs mb-1">{title}</h4>
               <p className="dl-comp-text-nano lg:dl-text-base">{subtitle}</p>
