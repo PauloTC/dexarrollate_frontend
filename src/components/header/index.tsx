@@ -41,28 +41,23 @@ const HeaderComponent = (props: Props) => {
         }
       </div>
       <div
-        className='
+        className={`
           dl-absolute
-          dl-left-2/4
-          dl--translate-x-1/2
-          lg:dl--translate-x-0
-          lg:dl-left-8
-        '
+          ${UserType.Seller !== position && `
+            dl-left-2/4
+            dl--translate-x-1/2
+            lg:dl--translate-x-0
+            lg:dl-left-8
+          `}
+        `}
       >
         <Image alt="logo" width={168} height={20} src="/login/logo.svg" />
       </div>
 
       {position === UserType.Seller &&
-        <div onClick={logout}>
-          <DlIcon
-            className="dl-text-neutral-darkest lg:dl-hidden"
-            size="md"
-            name="sign-out"
-          />
-          <DlTextButton icon='sign-out' className='dl-hidden lg:dl-flex'>
-            Cerrar sesión
-          </DlTextButton>
-        </div>
+        <DlTextButton icon='sign-out' onClick={logout} className='dl-gap-1'>
+          Cerrar sesión
+        </DlTextButton>
       }
     </div>
   );
