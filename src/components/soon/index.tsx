@@ -7,7 +7,6 @@ const Soon = () => {
       className='
         dl-bg-neutral-light
         dl-py-36
-        dl-px-10
         dl-flex
         dl-flex-col
         dl-items-center

@@ -2,12 +2,10 @@ import Banner from "@/components/banner";
 import Soon from "@/components/soon";
 import Resources from "@/components/resources";
 import { DlTabs } from "@alicorpdigital/dali-react";
-
-import { DlButton, DlIcon } from "@alicorpdigital/dali-react";
-import Image from "next/image";
-
+import { Home } from "@/api";
+import { useAuth } from '@/hooks';
 import React, { useEffect, useState } from "react";
-import { Home, Resource } from "@/api";
+import { UserType } from '@/utils/enums/user';
 
 const homeCtrl = new Home();
 
@@ -20,6 +18,7 @@ interface Video {
 }
 
 const HomePage = () => {
+  const { position } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
   const [videos, setVideos] = useState<Video[]>([]);
 
@@ -61,9 +60,7 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-
       <Resources />
-
       {!loading && (
         <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
           <DlTabs
@@ -83,6 +80,7 @@ const HomePage = () => {
           />
         </div>
       )}
+      {position === UserType.Seller && <Soon />}
     </>
   );
 };

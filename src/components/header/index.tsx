@@ -1,5 +1,7 @@
 "use client";
-import { DlIcon } from "@alicorpdigital/dali-react";
+import { useAuth } from '@/hooks/useAuth';
+import { UserType } from '@/utils/enums/user';
+import { DlIcon, DlTextButton } from "@alicorpdigital/dali-react";
 import Image from "next/image";
 
 type Props = {
@@ -7,6 +9,7 @@ type Props = {
 }
 
 const HeaderComponent = (props: Props) => {
+  const { position, logout } = useAuth();
   const { onHamburger } = props;
 
   return (
@@ -27,23 +30,40 @@ const HeaderComponent = (props: Props) => {
         lg:dl-px-8
       '
     >
-      <DlIcon
-        className="dl-text-al-primary-medium lg:dl-hidden"
-        size="md"
-        name="hamburger"
-        onClick={onHamburger}
-      />
+      <div>
+        {position !== UserType.Seller &&
+          <DlIcon
+            className="dl-text-al-primary-medium lg:dl-hidden"
+            size="md"
+            name="hamburger"
+            onClick={onHamburger}
+          />
+        }
+      </div>
       <div
         className='
           dl-absolute
           dl-left-2/4
           dl--translate-x-1/2
-          lg:dl-static
           lg:dl--translate-x-0
+          lg:dl-left-8
         '
       >
         <Image alt="logo" width={168} height={20} src="/login/logo.svg" />
       </div>
+
+      {position === UserType.Seller &&
+        <div onClick={logout}>
+          <DlIcon
+            className="dl-text-neutral-darkest lg:dl-hidden"
+            size="md"
+            name="sign-out"
+          />
+          <DlTextButton icon='sign-out' className='dl-hidden lg:dl-flex'>
+            Cerrar sesión
+          </DlTextButton>
+        </div>
+      }
     </div>
   );
 };
