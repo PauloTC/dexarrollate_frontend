@@ -9,7 +9,7 @@ import Image from 'next/image';
 import { UserType } from '@/utils/enums/user';
 
 const Layout = ({ children }: any) => {
-  const { logout, position } = useAuth();
+  const { logout, position, isLoading } = useAuth();
   const [open, setOpen] = useState<boolean>(false);
   const isLargeDevice = useMediaQuery('only screen and (min-width: 1024px)');
 
@@ -17,7 +17,7 @@ const Layout = ({ children }: any) => {
     <>
       <HeaderComponent onHamburger={() => setOpen(true)} />
       <div className='dl-flex lg:dl-gap-12'>
-        {position !== UserType.Seller && (
+        {!isLoading && position !== UserType.Seller && (
           <div
             style={{
               height: 'calc(100vh - 72px)',
