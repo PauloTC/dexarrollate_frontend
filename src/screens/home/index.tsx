@@ -1,11 +1,12 @@
+"use client";
 import Banner from "@/components/banner";
 import Soon from "@/components/soon";
 import Resources from "@/components/resources";
 import { DlTabs } from "@alicorpdigital/dali-react";
 import { Home } from "@/api";
-import { useAuth } from '@/hooks';
+import { useAuth } from "@/hooks";
 import React, { useEffect, useState } from "react";
-import { UserType } from '@/utils/enums/user';
+import { UserType } from "@/utils/enums/user";
 
 const homeCtrl = new Home();
 
