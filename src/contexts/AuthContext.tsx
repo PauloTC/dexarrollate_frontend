@@ -28,7 +28,6 @@ export function AuthProvider(props: Props) {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState<string | null>(null);
   const [position, setPosition] = useState("");
-
   const isLoading = position === "";
 
   useEffect(() => {

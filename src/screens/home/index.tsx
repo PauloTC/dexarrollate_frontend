@@ -65,6 +65,10 @@ const HomePage = () => {
       {!loading && (
         <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
           <DlTabs
+            styles={{
+              tabSelected: { color: "#008A05" },
+              lineSelected: { backgroundColor: "#008A05" },
+            }}
             items={formattedVideos().map((video) => {
               return {
                 key: video.key,

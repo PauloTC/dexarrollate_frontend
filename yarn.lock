@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-css-library/-/dali-css-library-1.32.2-canary.1.tgz#7d13264cb5a9a34c711ab7bf15e2f7843effc87a"
   integrity sha512-Riqo26ZOuF+rCAOcaQdCJ+TDPdbsU1avUlF2H6movxc33jFfE9Ac00u+TfsNMamkBKNWryfk1BobeliEYcbW+A==
 
-"@alicorpdigital/dali-react@^0.0.4-canary.2":
-  version "0.0.4-canary.2"
-  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-react/-/dali-react-0.0.4-canary.2.tgz#8bf51578c95924092b4b5d97ff84e2004f740f5b"
-  integrity sha512-5OuxbDZTDGLtzDnu39gWkq+Nkl03KPI8am34Ymw/IbG82+V4uAzaY0vpFv6pEFzYL/nX/hPbIax7O6Sje/FVsQ==
+"@alicorpdigital/dali-react@^0.0.4-canary.3":
+  version "0.0.4-canary.3"
+  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-react/-/dali-react-0.0.4-canary.3.tgz#b2d56bb8299a52b7d0b806209ce4b10985e5cea4"
+  integrity sha512-aunCvJmyfUh6ziONhWZ3CFpZqP4ZqosaQUEMWGv/AqQIZv7oB8ih/gNST+09RurK/jM06mRSE3EHqk0jU2fGcg==
   dependencies:
     "@uidotdev/usehooks" "^2.4.1"
     classnames "^2.5.1"
