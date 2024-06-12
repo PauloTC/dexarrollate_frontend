@@ -2,7 +2,7 @@
 import HeaderComponent from '@/components/header';
 import FooterComponent from '@/components/footer';
 import { DlIcon, DlSidebar } from '@alicorpdigital/dali-react';
-import { useMediaQuery } from '@uidotdev/usehooks';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { useAuth } from '@/hooks/useAuth';
 import { useState } from 'react';
 import Image from 'next/image';

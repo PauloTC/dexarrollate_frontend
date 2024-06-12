@@ -1,3 +1,4 @@
+'use client';
 import Banner from "@/components/banner";
 import Soon from "@/components/soon";
 import Resources from "@/components/resources";
