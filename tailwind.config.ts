@@ -45,6 +45,9 @@ const config: Config = {
           lg: "1024px",
         },
       },
+      gridTemplateColumns: {
+        'resources-3': 'repeat(auto-fit, minmax(320px, 1fr))'
+      }
     },
   },
   plugins: [],
