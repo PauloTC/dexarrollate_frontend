@@ -2,22 +2,22 @@
 import HeaderComponent from "@/components/header";
 import FooterComponent from "@/components/footer";
 import { DlIcon, DlSidebar } from "@alicorpdigital/dali-react";
-import { useMediaQuery } from "@uidotdev/usehooks";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import Image from "next/image";
-import { log } from "console";
+import { UserType } from "@/utils/enums/user";
 
 const Layout = ({ children }: any) => {
+  const { logout, position, isLoading } = useAuth();
   const [open, setOpen] = useState<boolean>(false);
   const isLargeDevice = useMediaQuery("only screen and (min-width: 1024px)");
-  const { isSeller, logout } = useAuth();
 
   return (
     <>
       <HeaderComponent onHamburger={() => setOpen(true)} />
       <div className="dl-flex lg:dl-gap-12">
-        {true && (
+        {!isLoading && position !== UserType.Seller && (
           <div
             style={{
               height: "calc(100vh - 72px)",
@@ -63,9 +63,7 @@ const Layout = ({ children }: any) => {
                   icon: <DlIcon name="sign-out" />,
                   key: "cerrar-sesion",
                   label: "Cerrar sesión",
-                  onClick: () => {
-                    logout();
-                  },
+                  onClick: logout,
                 },
               ]}
             />

@@ -7,13 +7,13 @@ const Banner = () => {
         dl-hidden
         dl-bg-[url("/home/banner-home.jpg")]
         dl-bg-cover
-        dl-bg-bottom
+        dl-bg-center
         lg:dl-flex
         dl-flex-col
         dl-text-center
         dl-items-center
         dl-justify-center
-        dl-min-h-64
+        dl-min-h-72
         dl-text-primary-dark
       '
     >

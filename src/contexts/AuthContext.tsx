@@ -1,22 +1,33 @@
 "use client";
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, ReactNode } from "react";
 import { Token, User } from "@/api";
 import { useRouter } from "next/navigation";
+
+type Props = {
+  children: ReactNode;
+}
+
+type ContextProps = {
+  accessToken: string | null;
+  user: any;
+  login: (token: string) => void;
+  isLoading: boolean;
+  logout: () => void;
+  position: string;
+}
 
 const tokenCtrl = new Token();
 const userCtrl = new User();
 
-export const AuthContext = createContext();
+export const AuthContext = createContext<ContextProps>({} as ContextProps);
 
-export function AuthProvider(props) {
+export function AuthProvider(props: Props) {
   const { children } = props;
 
   const router = useRouter();
   const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState<string | null>(null);
   const [position, setPosition] = useState("");
-
-  const isSeller = position === "vendedor";
   const isLoading = position === "";
 
   useEffect(() => {
@@ -26,7 +37,6 @@ export function AuthProvider(props) {
       if (!token) {
         logout();
         return;
-        a;
       }
 
       if (tokenCtrl.hasExpired(token)) {
@@ -37,7 +47,7 @@ export function AuthProvider(props) {
     })();
   }, []);
 
-  const login = async (token) => {
+  const login = async (token: string) => {
     try {
       tokenCtrl.setToken(token);
       const response = await userCtrl.getMe();
@@ -60,11 +70,14 @@ export function AuthProvider(props) {
     accessToken: token,
     user,
     login,
-    isSeller,
     isLoading,
     logout,
     position,
   };
 
-  return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={data}>
+      {children}
+    </AuthContext.Provider>
+  );
 }

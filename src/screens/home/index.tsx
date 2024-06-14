@@ -1,13 +1,13 @@
+"use client";
 import Banner from "@/components/banner";
 import Soon from "@/components/soon";
 import Resources from "@/components/resources";
-import { DlTabs } from "@alicorpdigital/dali-react";
-
-import { DlButton, DlIcon } from "@alicorpdigital/dali-react";
-import Image from "next/image";
-
+import cn from 'classnames';
+import { DlTabs, DlSkeleton } from "@alicorpdigital/dali-react";
+import { Home } from "@/api";
+import { useAuth } from "@/hooks";
 import React, { useEffect, useState } from "react";
-import { Home, Resource } from "@/api";
+import { UserType } from "@/utils/enums/user";
 
 const homeCtrl = new Home();
 
@@ -20,16 +20,16 @@ interface Video {
 }
 
 const HomePage = () => {
-  const [loading, setLoading] = useState<boolean>(false);
+  const { position } = useAuth();
+  const [loading, setLoading] = useState<boolean>(true);
   const [videos, setVideos] = useState<Video[]>([]);
 
   useEffect(() => {
     (async () => {
-      setLoading(true);
       const data = await homeCtrl.getHomeData();
 
       setVideos(data);
-      setLoading(false);
+      setTimeout(() => setLoading(false), 1000);
     })();
   }, []);
 
@@ -61,12 +61,19 @@ const HomePage = () => {
   return (
     <>
       <Banner />
-
       <Resources />
 
-      {!loading && (
-        <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
+      <div className="dl-p-4 dl-container dl-mx-auto lg:dl-p-0 lg:dl-py-10">
+        <div className={cn({ "dl-hidden": !loading })}>
+          <DlSkeleton className='dl-min-h-12 dl-mb-4' />
+          <DlSkeleton className='dl-min-h-96' />
+        </div>
+        {!loading &&
           <DlTabs
+            styles={{
+              tabSelected: { color: "#008A05" },
+              lineSelected: { backgroundColor: "#008A05" },
+            }}
             items={formattedVideos().map((video) => {
               return {
                 key: video.key,
@@ -81,8 +88,9 @@ const HomePage = () => {
               };
             })}
           />
-        </div>
-      )}
+        }
+      </div>
+      {position === UserType.Seller && <Soon />}
     </>
   );
 };
