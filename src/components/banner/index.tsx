@@ -18,8 +18,8 @@ const Banner = () => {
       '
     >
       <h2 className='dl-text-3xl dl-font-bold'>¡Hola!</h2>
-      <p className='dl-text-lg'>
-        Aquí inicia tu aventura de <br /> <b>aprendizaje</b>
+      <p className='dl-text-lg dl-max-w-xs'>
+        Estas son herramientas que necesitarás durante tu aventura de aprendizaje.
       </p>
     </div>
   )

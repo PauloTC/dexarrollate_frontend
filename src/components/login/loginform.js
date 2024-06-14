@@ -12,6 +12,7 @@ const authCtrl = new Auth();
 const LoginForm = () => {
   const router = useRouter();
   const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [validationSchema, setValidationSchema] = useState(
     Yup.object({
       identifier: Yup.string()
@@ -32,6 +33,7 @@ const LoginForm = () => {
     validateOnChange: false,
     validateOnMount: false,
     onSubmit: async (values) => {
+      setLoading(true);
       try {
         const response = await authCtrl.login(values);
 
@@ -40,6 +42,8 @@ const LoginForm = () => {
         router.push("/inicio");
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     },
   });
@@ -116,7 +120,14 @@ const LoginForm = () => {
         helperText={formik.errors.password}
         size="lg"
       />
-      <DlButton type="submit" className="dl-mb-6" block={true}>
+      <DlButton
+        type="submit"
+        className="dl-mb-6"
+        variant='highlight'
+        size='lg'
+        block
+        loading={loading}
+      >
         Ingresar
       </DlButton>
     </form>
