@@ -113,12 +113,7 @@ const Resources = () => {
               <h4 className="dl-subtitle-xxs mb-1">{title}</h4>
               <p className="dl-comp-text-nano lg:dl-text-base">{subtitle}</p>
 
-              {/* <div className="dl-mt-6 dl-grid dl-gap-2 lg:dl-grid-cols-3 lg:dl-gap-4"> */}
-              {/* <div className="dl-mt-6 dl-grid dl-auto-cols-[repeat(auto-fit, minmax(320px, 1fr))] dl-gap-2"> */}
-              <div
-                className="dl-mt-6 dl-grid dl-grid-cols-resources-3 dl-gap-2"
-                // style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}
-              >
+              <div className="dl-mt-6 dl-grid dl-grid-cols-resources-3 dl-gap-2">
                 {documents.data.map((document: Document, index: number) => {
                   const { type, title } = document.attributes;
                   const file = document.attributes.file.data.attributes;
