@@ -99,7 +99,9 @@ const Resources = () => {
       </div>
       <div
         className={`dl-transition-opacity dl-duration-500 ${
-          isLoading ? "dl-invisible dl-opacity-0" : "dl-visible dl-opacity-100"
+          isLoading
+            ? "dl-invisible dl-opacity-0 dl-hidden"
+            : "dl-visible dl-opacity-100 dl-block"
         }`}
       >
         {resources.map((resource, index) => {
