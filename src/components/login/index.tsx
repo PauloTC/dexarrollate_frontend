@@ -1,19 +1,8 @@
 "use client";
 import Image from "next/image";
 import LoginForm from "./loginform";
-import { useState, useEffect } from "react";
 
 const LoginComponent = () => {
-  const [showImage, setShowImage] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowImage(true);
-    }, 3000); // Cambia este valor para ajustar el tiempo de espera
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
     <div className="dl-flex dl-flex-col lg:dl-flex-row">
       <div
