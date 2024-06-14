@@ -1,34 +1,56 @@
 "use client";
 import Image from "next/image";
 import LoginForm from "./loginform";
+import { useState, useEffect } from "react";
 
 const LoginComponent = () => {
+  const [showImage, setShowImage] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowImage(true);
+    }, 3000); // Cambia este valor para ajustar el tiempo de espera
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="dl-flex dl-flex-col lg:dl-flex-row">
       <div
-        className='
-          dl-bg-[url("/login/banner-mobile.png")]
+        className="
           dl-bg-center
           dl-bg-no-repeat
           dl-h-48
           dl-w-full
-          lg:dl-bg-[url("/login/banner-desktop.jpg")]
           lg:dl-h-screen
-        '
+          dl-relative
+        "
       >
+        <Image
+          alt="banner-plants"
+          layout="fill"
+          className="dl-z-10 "
+          objectFit="cover"
+          src="/login/login-plantas.png"
+        />
+        <Image
+          alt="banner"
+          layout="fill"
+          objectFit="cover"
+          src="/login/login-personaje.png"
+        />
       </div>
       <div
-        className='
-          dl-w-full
-          dl-container
+        className="
           dl-py-10
           dl-max-w-lg
+          dl-container
           dl-flex
           dl-justify-center
           dl-items-center
-        '
+        "
       >
-        <div className="dl-max-w-xs">
+        <div className="dl-w-full lg:dl-px-14 xl:dl-px-20">
           <Image
             className="dl-mb-6"
             alt="logo"
