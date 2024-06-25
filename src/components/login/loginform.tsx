@@ -1,5 +1,5 @@
 "use client";
-import { useForm, SubmitHandler, SubmitErrorHandler, Controller } from "react-hook-form"
+import { useForm, SubmitHandler, Controller } from "react-hook-form"
 import { DlButton, DlSelect, DlInput, DlHelperText } from "@alicorpdigital/dali-react";
 import { useRouter } from "next/navigation";
 import { Auth } from "@/api";
@@ -18,7 +18,7 @@ const LoginForm = () => {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errorAuth, setErrorAuth] = useState(false);
-  const { register, handleSubmit, control } = useForm<Inputs>({
+  const { handleSubmit, control, getValues, reset } = useForm<Inputs>({
     defaultValues: {
       documentType: 'dni',
       identifier: '',
@@ -26,7 +26,6 @@ const LoginForm = () => {
     },
   })
 
-  const onError: SubmitErrorHandler<Inputs> = (data) => console.log('bbbb', data);
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     setLoading(true);
 
@@ -44,13 +43,24 @@ const LoginForm = () => {
 
   return (
     <div className="dl-flex dl-flex-col dl-gap-6">
-      <DlSelect
-        size="lg"
-        items={[
-          { value: "dni", label: "DNI" },
-          { value: "ce", label: "CE" },
-        ]}
-        {...register('documentType')}
+      <Controller
+        name='documentType'
+        control={control}
+        render={({ field, formState: { errors } }) => {
+          return (
+            <DlSelect
+              size="lg"
+              items={[
+                { value: "dni", label: "DNI" },
+                { value: "ce", label: "CE" },
+              ]}
+              onChange={event => {
+                field.onChange(event.target.value);
+                reset({ identifier: '', password: '' });
+              }}
+            />
+          )
+        }}
       />
       <Controller
         name='identifier'
@@ -61,6 +71,7 @@ const LoginForm = () => {
             <DlInput
               placeholder='Documento'
               size="lg"
+              maxLength={getValues('documentType') === 'dni' ? 8 : 12}
               helperText={errors.identifier?.message}
               status={errors.identifier ? 'error' : undefined}
               {...field}
@@ -85,6 +96,7 @@ const LoginForm = () => {
               placeholder="Contraseña"
               type='password'
               size="lg"
+              maxLength={10}
               {...field}
               onChange={event => {
                 const value = event.target.value.replace(/[^0-9,.]+/g, '');
@@ -107,7 +119,7 @@ const LoginForm = () => {
           size='lg'
           block
           loading={loading}
-          onClick={handleSubmit(onSubmit, onError)}
+          onClick={handleSubmit(onSubmit)}
         >
           Ingresar
         </DlButton>
