@@ -12,13 +12,11 @@
     "@alicorpdigital/dali-css-library": "^1.32.2-canary.1",
     "@alicorpdigital/dali-react": "0.0.4-canary.6",
     "classnames": "^2.5.1",
-    "formik": "^2.4.6",
     "jwt-decode": "^4.0.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
-    "react-hook-form": "^7.52.0",
-    "yup": "^1.4.0"
+    "react-hook-form": "^7.52.0"
   },
   "devDependencies": {
     "@types/node": "^20",
