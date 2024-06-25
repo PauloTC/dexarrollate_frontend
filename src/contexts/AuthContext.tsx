@@ -55,7 +55,7 @@ export function AuthProvider(props: Props) {
       setToken(token);
       setPosition(response.position);
     } catch (error) {
-      console.log("error", error);
+      return error;
     }
   };
 

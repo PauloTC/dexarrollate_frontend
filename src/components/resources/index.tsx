@@ -42,7 +42,7 @@ const Resources = () => {
         fileType = "Excel";
         break;
       case ".pdf":
-        fileType = "Pdf";
+        fileType = "PDF";
         break;
       default:
         fileType = ext.substring(1);

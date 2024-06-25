@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      height: {
+        'h-18': '4.5rem'
+      },
       keyframes: {
         skeleton: {
           "0%": { backgroundColor: "#f3f3f3" },
@@ -30,6 +33,7 @@ const config: Config = {
         "neutral-medium": "#DEDEDE",
         "neutral-lightest": "#FCFCFC",
         "highlight-medium": "#3B8700",
+        "highlight-dark": "#006837",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
