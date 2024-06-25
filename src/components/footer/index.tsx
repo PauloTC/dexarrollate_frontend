@@ -9,14 +9,14 @@ const Footer = () => {
           <Image
             alt='dexarrollate'
             src='/dexarrollate-white.svg'
-            width={258}
-            height={32}
+            width={185}
+            height={23}
           />
-          <p className='dl-mt-12 lg:dl-mt-0 lg:dl-max-w-lg'>
+          <p className='dl-mt-12 lg:dl-mt-0 lg:dl-max-w-lg dl-font-medium dl-text-lg'>
             Si tienes alguna duda o consulta envíenos un correo a: contacto@alicorp.com
           </p>
         </div>
-        <div className='dl-pt-6 dl-border-t dl-border-t-neutral-dark lg:dl-text-center'>
+        <div className='dl-pt-6 dl-border-t dl-font-medium dl-text-lg dl-border-t-neutral-dark lg:dl-text-center'>
           Copyright © 2024 | Todos los derechos reservados
         </div>
       </div>

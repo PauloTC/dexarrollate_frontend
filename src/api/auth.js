@@ -4,7 +4,6 @@ export class Auth {
   async login(data) {
     try {
       const url = `${ENV.API_URL}${ENV.ENDPOINTS.AUTH.LOGIN}`;
-
       const params = {
         method: "POST",
         headers: {
@@ -17,10 +16,9 @@ export class Auth {
       const result = await response.json();
 
       if (response.status !== 200) throw result;
-
       return result;
     } catch (error) {
-      console.error(error);
+      throw error;
     }
   }
 }

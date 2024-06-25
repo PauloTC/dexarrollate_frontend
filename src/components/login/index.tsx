@@ -45,7 +45,7 @@ const LoginComponent = () => {
             alt="logo"
             width={168}
             height={20}
-            src="/login/logo.svg"
+            src="/dexarrollate.svg"
           />
           <h3 className="dl-text-2xl dl-font-semibold dl-mb-6">Bienvenido</h3>
 
