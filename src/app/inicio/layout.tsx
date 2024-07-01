@@ -40,6 +40,7 @@ const Layout = ({ children }: any) => {
               fixed
               onClose={() => setOpen(false)}
               closeable={!isLargeDevice}
+              activeKey='resources'
               title={
                 !isLargeDevice && (
                   <Image

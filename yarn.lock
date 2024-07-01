@@ -2,15 +2,15 @@
 # yarn lockfile v1
 
 
-"@alicorpdigital/dali-css-library@^1.32.2-canary.1":
-  version "1.32.2-canary.1"
-  resolved "https://registry.npmjs.org/@alicorpdigital/dali-css-library/-/dali-css-library-1.32.2-canary.1.tgz"
-  integrity sha512-Riqo26ZOuF+rCAOcaQdCJ+TDPdbsU1avUlF2H6movxc33jFfE9Ac00u+TfsNMamkBKNWryfk1BobeliEYcbW+A==
+"@alicorpdigital/dali-css-library@1.32.2-canary.2":
+  version "1.32.2-canary.2"
+  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-css-library/-/dali-css-library-1.32.2-canary.2.tgz#548594a97871a2da4bed811bc004f8e9a4f07740"
+  integrity sha512-wuA/ykNaOWIZppDn5gAARReAh9GSsoddVzNMOFXfIRHidi4H5+p/xk4dBrjZWW1myWYOhqQZ3inSNL8T+CKyPA==
 
-"@alicorpdigital/dali-react@0.0.4-canary.6":
-  version "0.0.4-canary.6"
-  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-react/-/dali-react-0.0.4-canary.6.tgz#ec6ce5da05d5f1bd956a524e1c80358c9fbadd6b"
-  integrity sha512-64cnYsSycRfDok3rDtlaKKpoD+Zxd7mXr8YvcTraTJssAnhC5lXtUXRpJGL3my9FDyyQLzBUUbta6k3fEpOJ6w==
+"@alicorpdigital/dali-react@0.0.4-canary.7":
+  version "0.0.4-canary.7"
+  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-react/-/dali-react-0.0.4-canary.7.tgz#c8748ebbc564466fa26f57557321e2a5d3949cf2"
+  integrity sha512-gR1oP0NZRoK5Z9h4NDVZGL/zs7m2vzdz0jJqsNQ0HbEdQLsoe7zjTqr5gYnjKVUuoOO4RCkmQjRt5BSubFGtpA==
   dependencies:
     "@uidotdev/usehooks" "^2.4.1"
     classnames "^2.5.1"
