@@ -9,8 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@alicorpdigital/dali-css-library": "^1.32.2-canary.1",
-    "@alicorpdigital/dali-react": "0.0.4-canary.6",
+    "@alicorpdigital/dali-css-library": "1.32.2-canary.2",
+    "@alicorpdigital/dali-react": "0.0.4-canary.7",
     "classnames": "^2.5.1",
     "jwt-decode": "^4.0.0",
     "next": "14.2.3",
