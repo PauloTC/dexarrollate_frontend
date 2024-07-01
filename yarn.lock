@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@alicorpdigital/dali-css-library@1.32.2-canary.5":
-  version "1.32.2-canary.5"
-  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-css-library/-/dali-css-library-1.32.2-canary.5.tgz#9515ffc12ca3cfd4a3e74af9cee8388c3e438430"
-  integrity sha512-/xKRkQ10VF9dGSaHgGyCac7257V2qc57nC9TQ6+ESRPbpRwmQeEOpe4XfB2Jj1veXBTqkOFXSHqKKYDjAWSv+g==
+"@alicorpdigital/dali-css-library@1.32.2-canary.6":
+  version "1.32.2-canary.6"
+  resolved "https://registry.yarnpkg.com/@alicorpdigital/dali-css-library/-/dali-css-library-1.32.2-canary.6.tgz#77c364d3275d45c9f80094053bc1eeb8e7d9189d"
+  integrity sha512-uVg2WkxTN/N2kPvUklZ2zhfx0rJYJhC1NY9T6IpzdM+K0me7G3lT/kOsA0ThBimgA8Hnww0K2gfPRi6Mz0hmYg==
 
 "@alicorpdigital/dali-react@0.0.4-canary.7":
   version "0.0.4-canary.7"
