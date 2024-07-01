@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { DlButton, DlSelect, DlInput, DlHelperText, DlDropdown } from "@alicorpdigital/dali-react";
+import { DlButton, DlSelect, DlInput, DlHelperText } from "@alicorpdigital/dali-react";
 import { useRouter } from "next/navigation";
 import { Auth } from "@/api";
 import { useState } from "react";
@@ -48,16 +48,16 @@ const LoginForm = () => {
         control={control}
         render={({ field }) => {
           return (
-            <DlDropdown
+            <DlSelect
               size="lg"
               value={getValues('documentType')}
               items={[
-                { key: "dni", label: "DNI" },
-                { key: "ce", label: "CE" },
+                { value: "dni", label: "DNI" },
+                { value: "ce", label: "CE" },
               ]}
               onChange={event => {
-                field.onChange(event.key);
-                reset({ identifier: '', password: '', documentType: event.key });
+                field.onChange(event.target.value);
+                reset({ identifier: '', password: '', documentType: event.target.value });
               }}
             />
           )
