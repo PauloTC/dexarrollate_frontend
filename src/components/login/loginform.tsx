@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { DlButton, DlSelect, DlInput, DlHelperText } from "@alicorpdigital/dali-react";
+import { DlButton, DlSelect, DlInput, DlHelperText, DlIcon, DlInteractiveIcon } from "@alicorpdigital/dali-react";
 import { useRouter } from "next/navigation";
 import { Auth } from "@/api";
 import { useState } from "react";
@@ -18,6 +18,7 @@ const LoginForm = () => {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [errorAuth, setErrorAuth] = useState(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const { handleSubmit, control, getValues, reset } = useForm<Inputs>({
     defaultValues: {
       documentType: 'dni',
@@ -95,15 +96,21 @@ const LoginForm = () => {
               helperText={errors.password?.message}
               status={errors.password ? 'error' : undefined}
               placeholder="Contraseña"
-              type='password'
+              type={showPassword ? 'text' : 'password'}
               size="lg"
-              maxLength={10}
+              maxLength={24}
               {...field}
               onChange={event => {
-                const value = event.target.value.replace(/[^0-9,.]+/g, '');
                 setErrorAuth(false);
-                field.onChange(value);
+                field.onChange(event.target.value);
               }}
+              suffix={
+                <DlIcon
+                  className='dl-cursor-pointer dl-text-neutral-dark'
+                  name={showPassword ? 'eye' : 'eye-slash'}
+                  onClick={() => setShowPassword(!showPassword)}
+                />
+              }
             />
           )
         }}
