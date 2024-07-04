@@ -101,8 +101,9 @@ const LoginForm = () => {
               maxLength={24}
               {...field}
               onChange={event => {
+                const value = event.target.value.replace(/\s/g, '');
                 setErrorAuth(false);
-                field.onChange(event.target.value);
+                field.onChange(value);
               }}
               suffix={
                 <DlIcon
