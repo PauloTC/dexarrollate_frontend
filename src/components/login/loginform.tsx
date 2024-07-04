@@ -1,6 +1,6 @@
 "use client";
 import { useForm, SubmitHandler, Controller } from "react-hook-form"
-import { DlButton, DlSelect, DlInput, DlHelperText, DlIcon, DlInteractiveIcon } from "@alicorpdigital/dali-react";
+import { DlButton, DlSelect, DlInput, DlHelperText, DlIcon } from "@alicorpdigital/dali-react";
 import { useRouter } from "next/navigation";
 import { Auth } from "@/api";
 import { useState } from "react";
